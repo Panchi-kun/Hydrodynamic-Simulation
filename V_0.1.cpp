@@ -1,11 +1,8 @@
 #include <iostream>
+#include <vector>
 
-struct Cell{
-    float FloorHeight;
-    float WaterHeight;
-    float x;
-    float y;
-    float z;
+struct Particle{
+    
 }
 
 void source{
