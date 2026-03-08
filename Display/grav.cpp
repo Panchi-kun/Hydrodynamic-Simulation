@@ -112,6 +112,7 @@ int main(){
         parts.insert(parts.end(), ringk.begin()+1, ringk.end());
     }
 
+
     //Particle s2(20.0f, earthMass*.5, sf::Color(135,137,218)); s2.set_pos(1400,200); s2.set_vel(-180,80);
     //Particle s3(20.0f, earthMass*.5, sf::Color(135,137,218)); s3.set_pos(200,200);  s3.set_vel(180,20);
     Particle s2(20.0f, earthMass*.5, sf::Color(135,137,218)); s2.set_pos(1400,200); s2.set_vel(-80,80);
