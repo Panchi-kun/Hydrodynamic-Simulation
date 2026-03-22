@@ -102,7 +102,7 @@ int main(){
 
     Particle s1(20.0f, earthMass, sf::Color(35,137,218)); s1.set_pos(600,200); s1.set_vel(0,0) ;
     int nRings = 30;
-    int detail = 60;
+    int detail = 30;
     float startR = 50.0f;
     float gapR   = 8.0f;
 
