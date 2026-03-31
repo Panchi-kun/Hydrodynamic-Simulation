@@ -5,7 +5,7 @@
 using namespace std;
 using namespace sf;
 
-#pragma region Consts
+#pragma region Constants
 static std::default_random_engine gen(std::random_device{}());
 const unsigned int windowX = 1500;
 const unsigned int windowY = 1000;
@@ -13,6 +13,7 @@ const float pi = 3.14159f;
 const int tGap = 1;
 #pragma endregion
 
+// Create displaceable particles
 struct Particle{
     float x, y, vx, vy, r;
     CircleShape ball;
@@ -32,6 +33,7 @@ struct Particle{
     void reDraw(){ball.setPosition({x,y});}
 };
 
+// Create background objects
 struct stillObject{
     float x; float xSz;
     float y; float ySz; 
@@ -70,6 +72,7 @@ struct stillObject{
     }
 };
 
+// Create default uniform flow particles
 vector<Particle> flowParts(){
     float mRad = 10.0f;
     float iniPos = 50.0f;
@@ -108,8 +111,8 @@ int main(){
     window.setFramerateLimit(60);
 
     #pragma endregion
+    #pragma region CreateCar
 
-    #pragma region Car
     vector<stillObject> objs;
     stillObject lBody({700.f,400.f},{400.f,75.f},Color(137,137,218),'r');
     stillObject hBody({800.f,335.f},{300.f,70.f},Color(137,137,218),'r');
@@ -125,10 +128,11 @@ int main(){
     objs.push_back(move(wheel1));
     objs.push_back(move(wheel2));
     objs.push_back(move(noseCone));
+
     #pragma endregion
 
     while (window.isOpen()){
-        #pragma region Maintenance
+        #pragma region WindowTimeMaintance
 
         while (const optional event = window.pollEvent()){
             if (event->is<Event::Closed>())
@@ -142,6 +146,8 @@ int main(){
         float dt = (now - lastTime).asSeconds(); 
         lastTime = now; 
 
+        #pragma endregion
+
         // Draw all particles
         for (int i=0; i<movers.size(); i++){
             movers[i].reDraw();
@@ -151,8 +157,7 @@ int main(){
         for (int i=0; i<objs.size(); i++){
             objs[i].reDraw();
             window.draw(*objs[i].obj.get());
-        }
-        #pragma endregion
+        }      
 
         // Update positions
         for (int i=0; i<movers.size(); i++){
@@ -163,7 +168,7 @@ int main(){
             movers[i].x += movers[i].vx*dt; 
             movers[i].y += movers[i].vy*dt; 
         }
-        cout << movers.size() <<endl;
+        // cout << movers.size() <<endl; // Make sure particle sizes arent exploding
 
         // Define flow particles
         if ((now-lastFlow).asSeconds() > tGap){
@@ -172,10 +177,7 @@ int main(){
                 movers.push_back(flow);
             }
             lastFlow = lastTime;
-        }
-
-        // Draw object
-        
+        }        
     }
 
     return 0;
