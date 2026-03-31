@@ -148,16 +148,9 @@ int main(){
 
         #pragma endregion
 
-        // Draw all particles
-        for (int i=0; i<movers.size(); i++){
-            movers[i].reDraw();
-            window.draw(movers[i].ball);
-        }
-        // Draw all shapes
-        for (int i=0; i<objs.size(); i++){
-            objs[i].reDraw();
-            window.draw(*objs[i].obj.get());
-        }      
+        // Draw particles & background objects
+        for (auto& mover:movers){mover.reDraw(); window.draw(mover.ball);}      
+        for (auto& item:objs)   {item.reDraw();  window.draw(*item.obj.get());} 
 
         // Update positions
         for (int i=0; i<movers.size(); i++){
@@ -170,7 +163,7 @@ int main(){
         }
         // cout << movers.size() <<endl; // Make sure particle sizes arent exploding
 
-        // Define flow particles
+        // Define flow particles -> Turn this into a function bitte schon
         if ((now-lastFlow).asSeconds() > tGap){
             vector <Particle> flows = flowParts();
             for (auto & flow : flows) {
