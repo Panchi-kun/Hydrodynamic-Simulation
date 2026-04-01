@@ -55,7 +55,7 @@ void trajectory(Particle& par1, Particle& par2, float dt){
     float r     = sqrt(dx*dx + dy*dy);
 
     float a1 = -G*par2.mass/(r*r); 
-    float a2 = G*par1.mass/(r*r);
+    float a2 =  G*par1.mass/(r*r);
 
     // Find updated velocities
     par1.v_x += a1*dt*cos(theta); par2.v_x += a2*dt*cos(theta);
